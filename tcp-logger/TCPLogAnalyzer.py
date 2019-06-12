@@ -35,15 +35,14 @@ class TCPDumpDecoder:
         }
 
     @staticmethod
-    def _decode_ip(fields):
-        message = '|'.join(fields) # concat the fields by a pipe
+    def _decode_ip(fields, raw_data_string=""):
         return {
             'date': str(datetime.datetime.now().date()),
             'timestamp': fields[0],
             'protocol': fields[1],
             'from': fields[2],
             'to': fields[4],
-            'message': '{}'.format(message)
+            'raw_message': raw_data_string
         }
 
     @staticmethod
@@ -59,7 +58,7 @@ class TCPDumpDecoder:
 
         # now decode the 
         if protocol == "IP":
-            return TCPDumpDecoder._decode_ip(fields)
+            return TCPDumpDecoder._decode_ip(fields, tcp_dump_str)
 
         ## Only use the IPv4 dump for now
         #if protocol == "IP6":
