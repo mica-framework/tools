@@ -61,11 +61,12 @@ class TCPDumpDecoder:
         if protocol == "IP":
             return TCPDumpDecoder._decode_ip(fields)
 
-        if protocol == "IP6":
-            return TCPDumpDecoder._decode_ip(fields)
+        ## Only use the IPv4 dump for now
+        #if protocol == "IP6":
+        #    return TCPDumpDecoder._decode_ip(fields)
 
-        if protocol == "ARP": 
-            return TCPDumpDecoder._decode_arp(fields)
+        #if protocol == "ARP": 
+        #    return TCPDumpDecoder._decode_arp(fields)
 
         return None
 
