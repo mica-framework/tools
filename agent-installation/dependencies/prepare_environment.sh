@@ -13,7 +13,6 @@ export VBOX_MSI_INSTALL_PATH="C:\\Program Files\\Oracle\\VirtualBox\\"
 
 # now set the environment of the users system
 cmd.exe <<< 'setx PATH "C:\Program Files\Docker Toolbox;"'
-cmd.exe <<< 'set PATH="C:\Program Files\Docker Toolbox;"'
 export PATH="$PATH;C:\Program Files\Docker Toolbox;"
 
 # now run the actual docker startup script
