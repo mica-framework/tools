@@ -44,7 +44,6 @@ def _init_docker_toolbox_windows():
         _log_state("SUCCESS", "Finished Docker Toolbox Configuration!")
     except Exception as err:
         _log_state("### ERROR ###", 'ERROR while Docker Toolbox Configuration: {}'.format(err))
-        exit(500)
 
     # now try to fix the registry entry
     try:
@@ -64,11 +63,12 @@ def _init_docker_toolbox_windows():
             f.write(json.dumps(config_data))
 
         # now restart the docker machine
-        os.system('start /MIN docker-machine provision default')
+        os.system('start /B /MIN docker-machine provision default')
+        #os.system('set PATH="C:\Program Files\Docker Toolbox"') # env for current session
+        #os.system('setx /M PATH "C:\Program Files\Docker Toolbox"') # env for system session
         _log_state("SUCCESS", "Did add insecure registry to the config!")
     except Exception as err:
         _log_state("### ERROR ###", 'ERROR while Docker Toolbox Registry Configurations: {}'.format(err))
-        exit(500)
 
     # got everything configured
     _log_state("SUCCESS", "Finsihed the Preconfiguration of the Docker Toolbox!")
