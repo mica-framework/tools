@@ -12,7 +12,7 @@ echo "Start installation..."
 # now we need to set the environment first
 echo ".. setting environment"
 export PATH="$PATH;C:\Program Files\Docker Toolbox;C:\Program Files\Git\bin;"
-cmd.exe <<< "setx /M PATH '%PATH%;C:\Program Files\Docker Toolbox;C:\Program Files\Git\bin;'"
+cmd.exe <<< 'setx /M PATH "%PATH%;C:\Program Files\Docker Toolbox;C:\Program Files\Git\bin;"'
 
 # first install the autostart file
 echo ".. initialize the startup files"
