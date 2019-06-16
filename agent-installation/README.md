@@ -18,7 +18,7 @@ As soon as you've got admin rights within the shell-session, only execute the
 following commands (NOTE: you need to modify the USER and PASSWORD with you're actual
 credentials)
 ```bash
-$ curl https://raw.githubusercontent.com/mica-framework/tools/master/agent-installation/install_mica_agent.sh --output install.sh && ./install.sh %% rm ./install.sh
+curl https://raw.githubusercontent.com/mica-framework/tools/master/agent-installation/install_mica_agent.sh --output install.sh && ./install.sh && rm ./install.sh
 ```
 
 If you want to delete the history for security reasons ;-) just enter the`
