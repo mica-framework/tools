@@ -13,6 +13,11 @@ rm /c/ProgramData/Microsoft/Windows/'Start Menu'/Programs/StartUp/*mica*.vbs 2> 
 # now we can install the agent
 echo "Start installation..."
 
+# now we need to set the environment first
+echo ".. setting environment"
+export PATH="$PATH;C:\Program Files\Docker Toolbox;C:\Program Files\Git\bin;"
+cmd.exe <<< "setx /M PATH '%PATH%;C:\Program Files\Docker Toolbox;C:\Program Files\Git\bin;'"
+
 # first install the autostart file
 echo ".. initialize the startup files"
 cd /c/ProgramData/Microsoft/Windows/'Start Menu'/Programs/StartUp/
