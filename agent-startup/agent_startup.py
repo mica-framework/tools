@@ -63,7 +63,7 @@ def _init_docker_toolbox_windows():
             f.write(json.dumps(config_data))
 
         # now restart the docker machine
-        os.system('start /B /MIN docker-machine provision default')
+        os.system('start /MIN docker-machine provision default')
         #os.system('set PATH="C:\Program Files\Docker Toolbox"') # env for current session
         #os.system('setx /M PATH "C:\Program Files\Docker Toolbox"') # env for system session
         _log_state("SUCCESS", "Did add insecure registry to the config!")
