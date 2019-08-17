@@ -1,7 +1,18 @@
 import os
 import subprocess
 import json
+import yaml
+import sys
 
+##### check operating systems
+def _is_windows():
+    return sys.platform == "win32" or sys.platform == "cygwin"
+
+def _is_linux():
+    return sys.platform == "linux" or sys.platform == "linux2"
+
+def _is_mac_os():
+    return sys.platform == "darwin"
 
 ##### Logging
 def _log_state(state, message, file="C:\\TEMP\\agent.log", print_to_console=True, append=True):
@@ -73,12 +84,22 @@ def _init_docker_toolbox_windows():
     # got everything configured
     _log_state("SUCCESS", "Finsihed the Preconfiguration of the Docker Toolbox!")
 
+##### Load the configuration
+def _load_config():
+    try:
+        with open("C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe\\config.yml", 'r') as ymlfile:
+            yml = yaml.safe_load(ymlfile)
+    except Exception as err:
+        _log_state("### ERROR ###", 'Config file "config.yml" not found!')
+        exit(500)
+    return yml
 
 ##### STARTUP AGENT
 def _startup_agent():
+    config = _load_config()
     print('>> Start the Agent in the Background..')
     try:
-        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe" -ArgumentList "--backend", "http://192.168.123.101/"}', shell=True)
+        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe" -ArgumentList "--backend", "{}", --version, "{}"}'.format(config['server']['host'], config['api_version']), shell=True)
         p.wait()
         _log_state("SUCCESS", "Finished Agent Startup!")
     except Exception as err:
@@ -89,5 +110,10 @@ def _startup_agent():
 #### GENERAL WORKFLOW
 if __name__ == '__main__':
     _log_state("START", "Start running the Script")
-    _init_docker_toolbox_windows() # 1
-    _startup_agent() # 2
+    _log_state("INFO", "Running on the OS: {}".format(sys.platform))
+    if _is_windows():
+        _init_docker_toolbox_windows() # 1
+        _startup_agent() # 2
+    else:
+        _log_state("ERROR", "This agent startup does only support an automated startup on windows for now!")
+    _log_state("END", "Autostart has finished")
