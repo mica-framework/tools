@@ -87,7 +87,7 @@ def _init_docker_toolbox_windows():
 ##### Load the configuration
 def _load_config():
     try:
-        with open("C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe\\config.yml", 'r') as ymlfile:
+        with open("C:\\\'Program Files\'\\MiCA-Framework\\config.yml", 'r') as ymlfile:
             yml = yaml.safe_load(ymlfile)
     except Exception as err:
         _log_state("### ERROR ###", 'Config file "config.yml" not found!')
