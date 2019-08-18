@@ -84,22 +84,12 @@ def _init_docker_toolbox_windows():
     # got everything configured
     _log_state("SUCCESS", "Finsihed the Preconfiguration of the Docker Toolbox!")
 
-##### Load the configuration
-def _load_config():
-    try:
-        with open("C:\\\'Program Files\'\\MiCA-Framework\\config.yml", 'r') as ymlfile:
-            yml = yaml.safe_load(ymlfile)
-    except Exception as err:
-        _log_state("### ERROR ###", 'Config file "config.yml" not found!')
-        exit(500)
-    return yml
 
 ##### STARTUP AGENT
 def _startup_agent():
-    config = _load_config()
     print('>> Start the Agent in the Background..')
     try:
-        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe" -ArgumentList "--backend", "{}", --version, "{}"}'.format(config['server']['host'], config['api_version']), shell=True)
+        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe"}', shell=True)
         p.wait()
         _log_state("SUCCESS", "Finished Agent Startup!")
     except Exception as err:
