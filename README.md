@@ -11,3 +11,6 @@ This repository contains all dependencies, as well as installers and third party
 If you like to know how the installation of the corresponding tool is working, just
 go to the subfolder. Each tool contains its own README with some further explanation
 about installing and using the tool.
+
+## License
+This project is licensed under the terms of the MIT license. See the [LICENSE](https://raw.githubusercontent.com/mica-framework/tools/master/LICENSE) file.
