@@ -89,7 +89,7 @@ def _init_docker_toolbox_windows():
 def _startup_agent():
     print('>> Start the Agent in the Background..')
     try:
-        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe" -ArgumentList "--file", "C:\\\'Program Files\'\\MiCA-Framework\\config.yml"}', shell=True)
+        p = subprocess.Popen('powershell Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\\\'Program Files\'\\MiCA-Framework\\mica-agent.exe" -ArgumentList "--file", "C:\\\'Program Files\'\\MiCA-Framework\\config.yml", "--logging"}', shell=True)
         p.wait()
         _log_state("SUCCESS", "Finished Agent Startup!")
     except Exception as err:
