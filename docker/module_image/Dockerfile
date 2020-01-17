@@ -5,7 +5,7 @@ LABEL maintainer="zinklandi@gmail.com"
 RUN apt-get update -y -qq && apt-get install -y -qq curl
 
 # configure nodejs and npm for the installation
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 
 # install python dependencies, curl, gnupg2 and tcpdump
 RUN apt-get update -y -qq && \
